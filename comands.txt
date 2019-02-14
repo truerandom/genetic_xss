@@ -1,0 +1,35 @@
+############
+Instale python-tidylib
+No funciona bien porque escapa todas las etiquetas mal formadas de la entrada del usuario
+Pero es lo que funciona mejor
+
+pip install html-validator
+
+###########
+wget https://github.com/ethicalhack3r/DVWA/archive/master.zip
+unzip master.zip -d /var/www/html
+mv /var/www/html/DVWA-master/ /var/www/html/dvwa
+chmod -R 777 /var/www/html/dvwa/
+########
+Modify nano /var/www/html/dvwa/config/config.inc.php.dist
+$_DVWA[ 'db_server' ]   = '127.0.0.1';
+$_DVWA[ 'db_database' ] = 'dvwa';
+$_DVWA[ 'db_user' ]     = 'dvwa';
+$_DVWA[ 'db_password' ] = 'p@ssw0rd';
+########
+mv /var/www/html/dvwa/config/config.inc.php.dist /var/www/html/dvwa/config/config.inc.php
+########
+mysql
+CREATE DATABASE dvwa;
+drop user dvwa@localhost;
+CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'p@ssw0rd';
+GRANT ALL ON dvwa.* TO 'dvwa'@'localhost';
+FLUSH PRIVILEGES;
+exit
+########
+service mysql restart
+service apache2 restart
+########
+Enter http://localhost/dvwa/setup.php create/reset database
+Login with admin:password
+

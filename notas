@@ -1,0 +1,10 @@
+START
+Generate the initial population
+Compute Fitness
+REPEAT
+	Selection
+	Crossover
+	Mutation
+	Compute Fitness
+UNTIL population has converged
+STOP
